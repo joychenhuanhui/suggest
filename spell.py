@@ -97,6 +97,8 @@ def max_c(corrections, histogram):
 def suggest(word):
 	f=open("corpus", "r")
 	histogram = build_counter(f)
+	if check_word(word,histogram):
+		return word
 	partitions = word_part(word)
 	corrections = set(add_list(partitions)+del_list(partitions)+ sub_list(partitions))
 	corrections = check_list(corrections,histogram)
