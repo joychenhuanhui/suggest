@@ -77,14 +77,32 @@ def add_list(partitions):
 	return corrections
 
 
+def max_c(corrections, histogram):
+	ret_val = ""
+	if len(corrections) > 0:
+		ret_val= corrections[0]
+	else:
+		return ""
+
+	for word in corrections:
+		if histogram[word] < histogram[ret_val]:
+			continue
+		elif histogram[word] > histogram[ret_val]:
+			ret_val=word
+		else:
+			continue
+	return ret_val
+
 
 def suggest(word):
 	f=open("corpus", "r")
 	histogram = build_counter(f)
 	partitions = word_part(word)
-	corrections  = set(add_list(partitions)+del_list(partitions)+ sub_list(partitions))
-	corrections= check_list(corrections,histogram)
-	
+	corrections = set(add_list(partitions)+del_list(partitions)+ sub_list(partitions))
+	corrections = check_list(corrections,histogram)
+	return max_c(corrections, histogram)
+				
+
 #print check_char_sub("grandsonn", histogram)
 #partitions = word_part("button")
 print suggest("cow")
