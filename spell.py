@@ -41,7 +41,8 @@ def word_part(word):
 		#button turns into [ ['b', 'utton'],...]
 		partitions.append([word[0:i+1],word[i+1:len(word)]])
 	return partitions
-	
+
+#doesn't account for compound words	
 def is_two_words(partitions, dictionary):
 	for pair in partitions:
 		if pair[0] in dictionary and pair[1] in dictionary:
