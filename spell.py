@@ -42,6 +42,12 @@ def word_part(word):
 		partitions.append([word[0:i+1],word[i+1:len(word)]])
 	return partitions
 	
+def is_two_words(partitions, dictionary):
+	for pair in partitions:
+		if pair[0] in dictionary and pair[1] in dictionary:
+			return pair[0] + " " + pair[1]
+	return ""
+
 def sub_list(partitions):
 	corrections= []
 	for i in range(0, len(partitions)):
