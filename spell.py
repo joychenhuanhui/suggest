@@ -1,4 +1,11 @@
 ALPH = "abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ"
+
+def file_to_list(textfile):
+	words=[]
+	for word in textfile:
+		words.append(word.strip())
+	return words
+
 def build_counter(textfile):
 	# "counts" the numbers in the file
 	words = {}
@@ -119,4 +126,4 @@ def suggest(word):
 
 #print check_char_sub("grandsonn", histogram)
 #partitions = word_part("button")
-print suggest("thecow")
+print suggest("rcaeacr")
