@@ -107,7 +107,7 @@ def suggest(word):
 	if check_word(word,histogram):
 		return word
 	partitions = word_part(word)
-	two_words=is_two_words(partitions, dictionary)
+	two_words=is_two_words(partitions,histogram)
 	if two_words != "":
 		return two_words
 	corrections = set(add_list(partitions)+del_list(partitions)+ sub_list(partitions))
@@ -117,4 +117,4 @@ def suggest(word):
 
 #print check_char_sub("grandsonn", histogram)
 #partitions = word_part("button")
-print suggest("cow")
+print suggest("thecow")
