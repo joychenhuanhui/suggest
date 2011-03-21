@@ -6,16 +6,17 @@ def file_to_list(textfile):
 		words.append(word.strip())
 	return words
 
-def build_counter(textfile):
+def build_counter(words):
 	# "counts" the numbers in the file
-	words = {}
-	for number in textfile:
+	dictionary= {}
+	for number in words:
 		number = number.strip()
-		if not number in words:
-			words[number]=1
+		if not number in dictionary:
+			dictionary[number]=1
 		else:
-			 words[number]+= 1
-	return words
+			 dictionary[number]+= 1
+	return dictionary
+
 def check_word(word, dictionary):
 	# checks if a word is in a previously made dictionary
 	return word in dictionary
@@ -112,7 +113,8 @@ def max_c(corrections, histogram):
 
 def suggest(word):
 	f=open("corpus", "r")
-	histogram = build_counter(f)
+	words=file_to_list(f)
+	histogram = build_counter(words)
 	if check_word(word,histogram):
 		return word
 	partitions = word_part(word)
