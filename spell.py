@@ -107,6 +107,9 @@ def suggest(word):
 	if check_word(word,histogram):
 		return word
 	partitions = word_part(word)
+	two_words=is_two_words(partitions, dictionary)
+	if two_words != "":
+		return two_words
 	corrections = set(add_list(partitions)+del_list(partitions)+ sub_list(partitions))
 	corrections = check_list(corrections,histogram)
 	return max_c(corrections, histogram)
