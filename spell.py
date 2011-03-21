@@ -45,6 +45,8 @@ def word_part(word):
 #doesn't account for compound words	
 def is_two_words(partitions, dictionary):
 	for pair in partitions:
+		if pair[1] == "": 
+			continue
 		if pair[0] in dictionary and pair[1] in dictionary:
 			return pair[0] + " " + pair[1]
 	return ""
