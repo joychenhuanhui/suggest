@@ -14,5 +14,14 @@ def similarity_model(filename):
 			for suf in bigrams(word[len(word)-3:]):
 				model[pre+suf].add(word)
 	return model
-	
-print similarity_model("corpus")
+
+def closest_words(word,model):
+	similar_words = set()
+	if word >= 6:
+		for pre in bigrams(word[:3]):
+			for suf in bigrams(word[len(word)-3:]):
+				similar_words = similar_words.union(model[pre+suf])
+	return similar_words
+
+model = similarity_model("corpus")
+print closest_words("grandson", model)
