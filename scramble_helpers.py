@@ -28,6 +28,10 @@ def char_model(filename):
 		model[letter]=float(model[letter])/count
 	return model
 
+def suggest(word,char_model,similarity_model):
+	similar_words=closest_words(word,similarity_model)
+	# NOT DONE
+
 def closest_words(word,model):
 	similar_words = set()
 	if word >= 6:
