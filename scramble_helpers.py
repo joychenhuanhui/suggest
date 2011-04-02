@@ -51,7 +51,7 @@ def suggest(word,char_model,similarity_model):
 		probability=probability_index(word,correction,char_model)
 		if current_best[1] > probability:
 			current_best = (correction,probability)
-	return current_best
+	return (current_best[0], word, current_best[1])
 
 def closest_words(word,model):
 	similar_words = set()
@@ -63,4 +63,4 @@ def closest_words(word,model):
 
 similarity_model = similarity_model("corpus")
 char_model = char_model("corpus")
-print suggest("becaus", char_model, similarity_model)
+print suggest("rsaeerc", char_model, similarity_model)
