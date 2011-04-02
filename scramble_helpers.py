@@ -13,6 +13,7 @@ def similarity_model(filename):
 		for pre in bigrams(word[0:3]):
 			for suf in bigrams(word[len(word)-3:]):
 				model[pre+suf].add(word)
+	print "similarity_model built"
 	return model
 
 def char_model(filename):
@@ -26,6 +27,7 @@ def char_model(filename):
 			count+=1
 	for letter in model.keys():
 		model[letter]=float(model[letter])/count
+	print "char_model built"
 	return model
 
 def probability_index(misspell,correction,char_model):
@@ -44,7 +46,12 @@ def probability_index(misspell,correction,char_model):
 
 def suggest(word,char_model,similarity_model):
 	similar_words=closest_words(word,similarity_model)
-	# NOT DONE
+	current_best=("",1)
+	for correction in similar_words:
+		probability=probability_index(word,correction,char_model)
+		if current_best[1] > probability:
+			current_best = (correction,probability)
+	return current_best
 
 def closest_words(word,model):
 	similar_words = set()
@@ -54,7 +61,6 @@ def closest_words(word,model):
 				similar_words = similar_words.union(model[pre+suf])
 	return similar_words
 
-#model = similarity_model("corpus")
-#print closest_words("grandson", model)
+similarity_model = similarity_model("corpus")
 char_model = char_model("corpus")
-print probability_index("dictionary", "dxctionary", char_model)
+print suggest("becaus", char_model, similarity_model)
