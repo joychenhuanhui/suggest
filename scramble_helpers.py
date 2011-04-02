@@ -28,6 +28,20 @@ def char_model(filename):
 		model[letter]=float(model[letter])/count
 	return model
 
+def probability_index(misspell,correction,char_model):
+	miss_letters = collections.defaultdict(lambda:0)
+	overlap = collections.defaultdict(lambda:0)
+	for letter in misspell:
+		miss_letters[letter]+=1
+	for letter in correction:
+		if miss_letters[letter]>=1:
+			overlap[letter]+=1
+			miss_letters[letter]-=1
+	probability=1
+	for letter in overlap.keys():
+		probability*=char_model[letter]**overlap[letter]
+	return probability
+
 def suggest(word,char_model,similarity_model):
 	similar_words=closest_words(word,similarity_model)
 	# NOT DONE
@@ -42,5 +56,5 @@ def closest_words(word,model):
 
 #model = similarity_model("corpus")
 #print closest_words("grandson", model)
-model = char_model("corpus")
-print model
+char_model = char_model("corpus")
+print probability_index("dictionary", "dxctionary", char_model)
