@@ -79,5 +79,3 @@ def error_model():
 	for error in ["D", "I", "R"]: model[error] = model[error]/float(total)
 
 	return model
-
-print error_model()
