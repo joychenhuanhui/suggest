@@ -1,4 +1,5 @@
-import itertools, collections
+import itertools, collections, error_model_helpers
+
 def bigrams (word):
 	for prefix in itertools.combinations(word,2):
 		yield ''.join(prefix)
