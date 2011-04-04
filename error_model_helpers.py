@@ -11,8 +11,6 @@ def minimum_edits(s, t):
 	for i in range(0,m):
 		d[i][0] = i
 		summary[i][0] = ["I"]*i
-		#print d[i][0]
-		#print summary[i][0]
 	for j in range(0,n):
 		d[0][j] = j
 		summary[0][j] = ["I"]*j
