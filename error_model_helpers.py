@@ -1,3 +1,6 @@
+TPATH = "0643/0643/"
+TRAIN = ["ABODAT.643"]
+
 # @brief Returns summary of errors for the minimum edit distance of two words
 def minimum_edits(s, t):
 	m = len(s)+1
@@ -33,6 +36,20 @@ def minimum_edits(s, t):
 					summary[i][j] = summary[i-1][j-1] + ["R"]
 	return summary[m-1][n-1]
 
+def train_abodat(path, model):
+	f = open(path, "r")
+	for line in f:
+		if line[0] == "$":
+			continue
+		for pair in line.strip().rstrip('.\n').split(','):
+			if len(pair) == 0:
+				continue
+			words = pair.split()
+			for error in minimum_edits(words[0], words[1]):
+				model[error] += 1
+	return model
+
 def error_model():
-	model = {"D", "I", "R"}
-	# TRAIN MODEL USING ERROR CORPUS
+	model = {"D":0, "I":0, "R":0}
+	train_abodat(TPATH+TRAIN[0], model)
+	return model
