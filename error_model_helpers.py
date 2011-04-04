@@ -64,3 +64,5 @@ def error_model():
 	train_abodat(TPATH+TRAIN[0], model)
 	train_appling1dat(TPATH+TRAIN[1], model)
 	return model
+
+print error_model()
