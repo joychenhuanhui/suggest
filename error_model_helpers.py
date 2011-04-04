@@ -75,6 +75,9 @@ def error_model():
 	train_appling1dat(TPATH+TRAIN[1], model)
 	train_appling2dat(TPATH+TRAIN[2], model)
 
+	total = sum(model.values())
+	for error in ["D", "I", "R"]: model[error] = model[error]/float(total)
+
 	return model
 
 print error_model()
