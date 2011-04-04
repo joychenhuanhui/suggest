@@ -7,10 +7,12 @@ def minimum_edits(s, t):
 
 	for i in range(0,m):
 		d[i][0] = i
-		summary[i][0] = ["I"]
+		summary[i][0] = ["I"]*i
+		#print d[i][0]
+		#print summary[i][0]
 	for j in range(0,n):
 		d[0][j] = j
-		summary[0][j] = ["I"]
+		summary[0][j] = ["I"]*j
 
 	for j in range(1,n):
 		for i in range(1,m):
@@ -29,7 +31,4 @@ def minimum_edits(s, t):
 					summary[i][j] = summary[i][j-1] + ["I"]
 				elif d[i-1][j-1]+1 <= d[i-1][j]+1 and d[i-1][j-1]+1 <= d[i][j-1]+1:
 					summary[i][j] = summary[i-1][j-1] + ["R"]
-	print summary
-	print summary[m-1][n-1]
-
-minimum_edits("exponential", "polynomial")
+	return summary[m-1][n-1]
