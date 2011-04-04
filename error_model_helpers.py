@@ -1,3 +1,5 @@
+import operator
+
 TPATH = "0643/0643/"
 TRAIN = ["ABODAT.643", "APPLING1DAT.643", "APPLING2DAT.643"]
 
@@ -68,6 +70,11 @@ def train_appling2dat(path, model):
 		for error in minimum_edits(words[0], words[1]):
 			model[error] += 1
 	return model
+
+def error_probability(malformed, correction, error_model):
+	return reduce(operator.mul,
+	[error_model[error] for error in minimum_edits(malformed, correction)])
+		
 
 def error_model():
 	model = {"D":0, "I":0, "R":0}
