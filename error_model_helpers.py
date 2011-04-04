@@ -1,5 +1,5 @@
 TPATH = "0643/0643/"
-TRAIN = ["ABODAT.643"]
+TRAIN = ["ABODAT.643", "APPLING1DAT.643"]
 
 # @brief Returns summary of errors for the minimum edit distance of two words
 def minimum_edits(s, t):
@@ -49,7 +49,18 @@ def train_abodat(path, model):
 				model[error] += 1
 	return model
 
+def train_appling1dat(path, model):
+	f = open(path, "r")
+	for line in f:
+		if line[0] == "$":
+			continue
+		words = line.split()
+		for error in minimum_edits(words[0], words[1]):
+			model[error] += 1
+	return model
+
 def error_model():
 	model = {"D":0, "I":0, "R":0}
 	train_abodat(TPATH+TRAIN[0], model)
+	train_appling1dat(TPATH+TRAIN[1], model)
 	return model
