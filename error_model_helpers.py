@@ -32,3 +32,7 @@ def minimum_edits(s, t):
 				elif d[i-1][j-1]+1 <= d[i-1][j]+1 and d[i-1][j-1]+1 <= d[i][j-1]+1:
 					summary[i][j] = summary[i-1][j-1] + ["R"]
 	return summary[m-1][n-1]
+
+def error_model():
+	model = {"D", "I", "R"}
+	# TRAIN MODEL USING ERROR CORPUS
