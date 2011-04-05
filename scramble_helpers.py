@@ -64,22 +64,59 @@ def similarity_model(filename):
 	print "similarity_model built"
 	return model
 
-
+# @brief  Case-sensitive probability distribution for characters in a corpus
+# Generates a probability distribution for characters in a corpus. We first
+# walk through the entire corpus, counting each character that we find. We
+# then approximate the probability that each character occurs by dividing its
+# count by the total number of characters in the corpus. So for example, 'x'
+# typically is about 0.005%.
+#
+# We return a hash table of the format {"character": probability}. So in the
+# case of "x", we would have something like {"x": 0.005}. NOTE that this
+# dictionary is definitely CASE-SENSITIVE by default.
+#
+# @param filename The corpus to establish the model from; can be any format
+#
+# @ A defaultdict object; each char is a key and each value is its probability
 def char_model(filename):
 	f=open(filename)
 	model=collections.defaultdict(lambda:1)
-	count=0
+	count=0  # total characters we encounter in corpus
+	# Count each letter
 	for word in f:
 		word = word.strip()
 		for letter in word:
 			model[letter]+=1
 			count+=1
+	# Turn the counts of letters into a probability
 	for letter in model.keys():
 		model[letter]=float(model[letter])/count
 	print "char_model built"
 	return model
 
+# @brief Finds probability that overlap between two words occurs
+# Finds the common characters between misspelling and correction and then
+# calculates the probability that those common characters occur anywhere
+# in the whatever language char_model is built around. Using the law of total
+# probability, we know the probability of this sequence is the probability of
+# each character multiplied together. This probability is supplied by the
+# char_model.
+#
+# This probability is a good estimator of how likely correction is for
+# misspelling: the less likely the overlap is, the less likely it is that
+# other words will share that overlap. So a really unique and unlikely overlap
+# will indicate that they share a collection of characters that almost no
+# other words do. So the smaller the probability we return, the more likely
+# this correction is to be a "good" correction.
+#
+# @brief misspell The misspelled word
+# @brief correction The possible correction for misspell
+# @brief char_model Probabilistic model of characters; get from char_model()
+#
+# @return The total probability that the overlap occurs
 def probability_index(misspell,correction,char_model):
+	# Start by finding the characters that misspell and correction have in
+	# common:
 	miss_letters = collections.defaultdict(lambda:0)
 	overlap = collections.defaultdict(lambda:0)
 	for letter in misspell:
@@ -88,7 +125,11 @@ def probability_index(misspell,correction,char_model):
 		if miss_letters[letter]>=1:
 			overlap[letter]+=1
 			miss_letters[letter]-=1
+	# As noted above, we're looking for smallest probability; thus '1' is a
+	# safe initial probability
 	probability=1
+	# Calculate the total probability of the characters both words have in
+	# common. Details above.
 	for letter in overlap.keys():
 		probability*=char_model[letter]**overlap[letter]
 	return probability
