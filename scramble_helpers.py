@@ -182,7 +182,7 @@ def suggest(word,char_model,similarity_model, error_model):
 # @param similarity_model The model we use to find similar words
 #
 # @return A set() of similar words
-def closest_words(word,simlarity_model):
+def closest_words(word,similarity_model):
 	similar_words = set()
 	# Our algorithm is only concerned with words longer than 6 chars
 	if word >= 6:
