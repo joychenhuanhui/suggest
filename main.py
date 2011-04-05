@@ -24,9 +24,10 @@ def build_tests(test):
 			norvig_correct += 1
 		count += 1
 		#print (our_out[0], pair[1],  pair[0])
-	print count
-	print "our correct: " + str(our_correct/float(count))
-	print "norvig correct: " + str(norvig_correct/float(count))
+	print "Total misspellings queried " + str(count)
+	print "Our correct suggestions: " + str(our_correct/float(count))
+	print "Norvig's correct suggestions: " + str(norvig_correct/float(count))
+	print
 
 print "### EXPERIMENT 1: THE \"EASY\" BIRKBECK MISSPELLINGS"
 build_tests("test_errors_easy")
