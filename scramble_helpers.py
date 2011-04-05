@@ -45,7 +45,8 @@ def probability_index(misspell,correction,char_model):
 		probability*=char_model[letter]**overlap[letter]
 	return probability
 
-def suggest(word,char_model,similarity_model):
+def suggest(word,char_model,similarity_model, error_model):
+	word = word.lower()
 	similar_words=closest_words(word,similarity_model)
 	current_best=("",1)
 	for correction in similar_words:
@@ -62,6 +63,7 @@ def closest_words(word,model):
 				similar_words = similar_words.union(model[pre+suf])
 	return similar_words
 
-similarity_model = similarity_model("corpus")
-char_model = char_model("corpus")
-print suggest("rsaeerc", char_model, similarity_model)
+#similarity_model = similarity_model("corpus")
+#char_model = char_model("corpus")
+#error_model = error_model_helpers.error_model()
+#print suggest("WONDRFUL", char_model, similarity_model, error_model)
