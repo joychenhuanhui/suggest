@@ -1,17 +1,17 @@
 import scramble_helpers, norvig
 
-def build_tests():
+def build_tests(test):
 	similarity_model = scramble_helpers.similarity_model("corpus")
 	char_model = scramble_helpers.char_model("corpus")
 	error_model = scramble_helpers.error_model_helpers.error_model()
 
-	f = open("test_errors", "r")
+	f = open(test, "r")
 	our_correct = 0
 	norvig_correct = 0
 	count = 0
 	for line in f:
 		pair = line.split()
-		if len(pair[0]) < 6 or len(pair[1]) < 6:
+		if len(pair) < 2 or len(pair[0]) < 6 or len(pair[1]) < 6:
 			continue
 		our_out = scramble_helpers.suggest(pair[1],char_model,similarity_model, error_model)
 		norvig_out = norvig.correct(pair[1].lower())
@@ -25,4 +25,5 @@ def build_tests():
 	print "our correct: " + str(our_correct/float(count))
 	print "norvig correct: " + str(norvig_correct/float(count))
 
-build_tests()
+build_tests("test_errors_easy")
+build_tests("test_errors_veryhard")
