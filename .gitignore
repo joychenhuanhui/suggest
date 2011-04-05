@@ -1,4 +1,5 @@
 *
 !*.py
 !.gitignore
+!readme.md
 !corpus
