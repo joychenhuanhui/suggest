@@ -53,6 +53,11 @@ def suggest(word,char_model,similarity_model, error_model):
 		probability=probability_index(word,correction,char_model)
 		if current_best[1] > probability:
 			current_best = (correction,probability)
+		if current_best[1] == probability:
+			curr_ed = error_model_helpers.minimum_edits(current_best[0], word)
+			new_ed = error_model_helpers.minimum_edits(correction, word)
+			if len(new_ed) < len(curr_ed):
+				current_best = (correction, probability)
 	return (current_best[0], word, current_best[1])
 
 def closest_words(word,model):
@@ -66,4 +71,4 @@ def closest_words(word,model):
 #similarity_model = similarity_model("corpus")
 #char_model = char_model("corpus")
 #error_model = error_model_helpers.error_model()
-#print suggest("WONDRFUL", char_model, similarity_model, error_model)
+#print suggest("wether", char_model, similarity_model, error_model)
