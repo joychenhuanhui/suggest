@@ -61,7 +61,6 @@ def similarity_model(filename):
 		for pre in combinatorial_bigrams(word[0:3]):
 			for suf in combinatorial_bigrams(word[len(word)-3:]):
 				model[pre+suf].add(word)
-	print "similarity_model built"
 	return model
 
 # @brief  Case-sensitive probability distribution for characters in a corpus
@@ -91,7 +90,6 @@ def char_model(filename):
 	# Turn the counts of letters into a probability
 	for letter in model.keys():
 		model[letter]=float(model[letter])/count
-	print "char_model built"
 	return model
 
 # @brief Finds probability that overlap between two words occurs
