@@ -134,14 +134,34 @@ def probability_index(misspell,correction,char_model):
 		probability*=char_model[letter]**overlap[letter]
 	return probability
 
+# @brief Suggests a word for some misspelled word using provided models
+# Suggests a possible correction for word based on the provided char_model,
+# similarity_model, and error_model. These can all be obtained from their
+# respective methods.
+#
+# @param word The word to correct
+# @param char_model Probability distribution for chars in given language
+# @param similarity_model Helps us find words that are "like" our misspelling
+# @param error_model Probability distribution for spelling errors
+#
+# @return A tuple of the suggestion, the original word, and the probability
 def suggest(word,char_model,similarity_model, error_model):
+	# Make word lower case and find the possible corrections "like" it.
 	word = word.lower()
 	similar_words=closest_words(word,similarity_model)
-	current_best=("",1)
+	current_best=("",1)  # Will hold our current-best word and its probability
+	                     # in form (word, probability)
+	# Cycle through possible corrections and find the "best" correction
 	for correction in similar_words:
 		probability=probability_index(word,correction,char_model)
 		if current_best[1] > probability:
 			current_best = (correction,probability)
+		# TIEBREAKER: lots of words have the same same overlapping characters,
+		# e.g., codirector and director for some malformed word "dxrector".
+		# All things equal, we want the correction that's closer to the
+		# malformed word. So when two corrections have the same overlap, we
+		# compute the Levenshtein distance for both and select the word for
+		# which this is smaller.
 		if current_best[1] == probability:
 			curr_ed = error_model_helpers.minimum_edits(current_best[0], word)
 			new_ed = error_model_helpers.minimum_edits(correction, word)
@@ -149,14 +169,32 @@ def suggest(word,char_model,similarity_model, error_model):
 				current_best = (correction, probability)
 	return (current_best[0], word, current_best[1])
 
-def closest_words(word,model):
+# @brief Find words closest to some string; must be longer than 6 chars
+# Find words that are most "like" some string; our experiment is only
+# concerned with words greater in length than 6 chars, so all words that are
+# smalelr are thrown away.
+#
+# We use a similarity_model (obtained through similarity_model()) to find
+# these words that are "like" our string. We do this by generating the
+# similarity index for our string (this process is codified in the comment
+# for that method) and looking at every word in that similarity space so
+# defined.
+#
+# @param word The word to find closest words of
+# @param similarity_model The model we use to find similar words
+#
+# @return A set() of similar words
+def closest_words(word,simlarity_model):
 	similar_words = set()
+	# Our algorithm is only concerned with words longer than 6 chars
 	if word >= 6:
+		# Find all similar words using the similarity index
 		for pre in combinatorial_bigrams(word[:3]):
 			for suf in combinatorial_bigrams(word[len(word)-3:]):
-				similar_words = similar_words.union(model[pre+suf])
+				similar_words = similar_words.union(similarity_model[pre+suf])
 	return similar_words
 
+"""TESTING STUFF"""
 #similarity_model = similarity_model("corpus")
 #char_model = char_model("corpus")
 #error_model = error_model_helpers.error_model()
