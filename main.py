@@ -1,8 +1,11 @@
 import scramble_helpers, norvig
 
 def build_tests(test):
+	print "BUILDING SIMILARITY MODEL"
 	similarity_model = scramble_helpers.similarity_model("corpus")
+	print "BUILDING CHARACTER MODEL"
 	char_model = scramble_helpers.char_model("corpus")
+	print "BUILDING ERROR MODEL"
 	error_model = scramble_helpers.error_model_helpers.error_model()
 
 	f = open(test, "r")
@@ -25,5 +28,7 @@ def build_tests(test):
 	print "our correct: " + str(our_correct/float(count))
 	print "norvig correct: " + str(norvig_correct/float(count))
 
+print "### EXPERIMENT 1: THE \"EASY\" BIRKBECK MISSPELLINGS"
 build_tests("test_errors_easy")
+print "### EXPERIMENT 2: THE \"HARD\" BIRKBECK MISSPELLINGS"
 build_tests("test_errors_veryhard")
