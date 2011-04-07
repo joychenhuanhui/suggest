@@ -141,10 +141,9 @@ def error_model():
 	train_appling2dat(TPATH+TRAIN[2], model)
 
 	total = sum(model.values())
-	print model
 	for error in model.keys(): model[error] = model[error]/float(total)
 
 	return model
 
 #print minimum_edits("cow", "cod")
-error_model = error_model()
+#error_model = error_model()
