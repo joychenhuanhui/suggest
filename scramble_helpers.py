@@ -143,7 +143,7 @@ def probability_index(misspell,correction,char_model):
 # @param error_model Probability distribution for spelling errors
 #
 # @return A tuple of the suggestion, the original word, and the probability
-def suggest(word,char_model,similarity_model, error_model):
+def suggest(word,char_model,similarity_model,word_model_tuple):
 	# Make word lower case and find the possible corrections "like" it.
 	word = word.lower()
 	similar_words=closest_words(word,similarity_model)
@@ -152,8 +152,18 @@ def suggest(word,char_model,similarity_model, error_model):
 	# Cycle through possible corrections and find the "best" correction
 	for correction in similar_words:
 		probability=probability_index(word,correction,char_model)
+		if correction in word_model_tuple[0]:
+			probability *= 1-word_model_tuple[0][correction]/float(word_model_tuple[1])
+		else:
+			word_model_tuple[1] += 1
+			word_model_tuple[correction] = 1
+			probability *= 1-word_model_tuple[0][correction]/float(word_model_tuple[1])
+
+		print correction, probability
+
 		if current_best[1] > probability:
 			current_best = (correction,probability)
+		"""
 		# TIEBREAKER: lots of words have the same same overlapping characters,
 		# e.g., codirector and director for some malformed word "dxrector".
 		# All things equal, we want the correction that's closer to the
@@ -165,6 +175,7 @@ def suggest(word,char_model,similarity_model, error_model):
 			new_ed = error_model_helpers.minimum_edits(correction, word)
 			if len(new_ed) < len(curr_ed):
 				current_best = (correction, probability)
+		"""
 	return (current_best[0], word, current_best[1])
 
 # @brief Find words closest to some string; must be longer than 6 chars
