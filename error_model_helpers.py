@@ -1,4 +1,4 @@
-import operator, itertools
+import operator, itertools, re, collections
 
 TPATH = "0643/0643/"
 TRAIN = ["ABODAT.643", "APPLING1DAT.643", "APPLING2DAT.643"]
@@ -74,7 +74,10 @@ def train_abodat(path, model):
 			if len(pair) == 0:
 				continue
 			words = pair.split()
+			if re.search("[^a-zA-Z]+", words[0]) != None or re.search("[^a-zA-Z]+", words[1]) != 0:
+				continue
 			for error in minimum_edits(words[0], words[1]):
+				print error
 				model[error] += 1
 	return model
 
@@ -85,6 +88,8 @@ def train_appling1dat(path, model):
 		if line[0] == "$":
 			continue
 		words = line.split()
+		if re.search("[^a-zA-Z]+", words[0]) != None or re.search("[^a-zA-Z]+", words[1]) != None:
+			continue
 		for error in minimum_edits(words[0], words[1]):
 			model[error] += 1
 	return model
@@ -97,6 +102,8 @@ def train_appling2dat(path, model):
 			continue
 		words = line.split()
 		if len(words) != 2:
+			continue
+		if re.search("[^a-zA-Z]+", words[0]) != None or re.search("[^a-zA-Z]+", words[1]) != None:
 			continue
 		for error in minimum_edits(words[0], words[1]):
 			model[error] += 1
@@ -134,6 +141,7 @@ def error_model():
 	train_appling2dat(TPATH+TRAIN[2], model)
 
 	total = sum(model.values())
+	print model
 	for error in model.keys(): model[error] = model[error]/float(total)
 
 	return model
