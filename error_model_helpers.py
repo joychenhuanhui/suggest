@@ -1,4 +1,4 @@
-import operator
+import operator, itertools
 
 TPATH = "0643/0643/"
 TRAIN = ["ABODAT.643", "APPLING1DAT.643", "APPLING2DAT.643"]
@@ -123,12 +123,17 @@ def error_probability(malformed, correction, error_model):
 #
 # @return A dictionary containing the probability distribution of errors in corpus
 def error_model():
-	model = {"D":0, "I":0, "R":0}
+	poss_edits = "DIR"
+	letters = "abcdefghijklmnopqrstuvwxyz"
+	model = {}
+	for product in itertools.product(poss_edits, letters):
+		model[''.join(product)] = 0
+
 	train_abodat(TPATH+TRAIN[0], model)
 	train_appling1dat(TPATH+TRAIN[1], model)
 	train_appling2dat(TPATH+TRAIN[2], model)
 
 	total = sum(model.values())
-	for error in ["D", "I", "R"]: model[error] = model[error]/float(total)
+	for error in model.keys(): model[error] = model[error]/float(total)
 
 	return model
