@@ -150,10 +150,10 @@ def suggest(word,char_model,similarity_model,word_model_tuple, error_model):
 	current_best=("",1)  # Will hold our current-best word and its probability
 	                     # in form (word, probability)
 	# Cycle through possible corrections and find the "best" correction
-	"""for correction in similar_words:
+	for correction in similar_words:
 		correction = correction.lower()
 		probability=probability_index(word,correction,char_model)
-		if correction in word_model_tuple[0]:
+		"""if correction in word_model_tuple[0]:
 			probability *= 1-word_model_tuple[0][correction]/float(word_model_tuple[1])
 		else:
 			word_model_tuple = (word_model_tuple[0], word_model_tuple[1]+1)
