@@ -6,57 +6,75 @@ tests1 = { 'access': 'acess', 'accessing': 'accesing', 'accommodation':
 'arrangeing': 'aranging', 'arrangement': 'arragment', 'articles': 'articals',
 'aunt': 'annt anut arnt', 'auxiliary': 'auxillary', 'available': 'avaible',
 'awful': 'awfall afful', 'basically': 'basicaly', 'beginning': 'begining',
-'benefit': 'benifit', 'benefits': 'benifits', 'between': 'beetween', 'bicycle':
+'benefit': 'benifit', 'benefits': 'benifits', 'between': 'beetween', 
+'bicycle':
 'bicycal bycicle bycycle', 'biscuits': 
 'biscits biscutes biscuts bisquits buiscits buiscuts', 'built': 'biult', 
 'cake': 'cak', 'career': 'carrer',
-'cemetery': 'cemetary semetary', 'centrally': 'centraly', 'certain': 'cirtain',
+'cemetery': 'cemetary semetary', 'centrally': 'centraly', 'certain': 
+'cirtain',
 'challenges': 'chalenges chalenges', 'chapter': 'chaper chaphter chaptur',
 'choice': 'choise', 'choosing': 'chosing', 'clerical': 'clearical',
 'committee': 'comittee', 'compare': 'compair', 'completely': 'completly',
 'consider': 'concider', 'considerable': 'conciderable', 'contented':
 'contenpted contende contended contentid', 'curtains': 
-'cartains certans courtens cuaritains curtans curtians curtions', 'decide': 'descide', 'decided':
+'cartains certans courtens cuaritains curtans curtians curtions','decide': 
+'descide', 'decided':
 'descided', 'definitely': 'definately difinately', 'definition': 'defenition',
 'definitions': 'defenitions', 'description': 'discription', 'desiccate':
 'desicate dessicate dessiccate', 'diagrammatically': 'diagrammaticaally',
 'different': 'diffrent', 'driven': 'dirven', 'ecstasy': 'exstacy ecstacy',
 'embarrass': 'embaras embarass', 'establishing': 'astablishing establising',
 'experience': 'experance experiance', 'experiences': 'experances', 'extended':
-'extented', 'extremely': 'extreamly', 'fails': 'failes', 'families': 'familes',
-'february': 'febuary', 'further': 'futher', 'gallery': 'galery gallary gallerry gallrey', 
+'extented', 'extremely': 'extreamly', 'fails': 'failes', 'families': 
+'familes',
+'february': 'febuary', 'further': 'futher', 'gallery': 
+'galery gallary gallerry gallrey', 
 'hierarchal': 'hierachial', 'hierarchy': 'hierchy', 'inconvenient':
-'inconvienient inconvient inconvinient', 'independent': 'independant independant',
+'inconvienient inconvient inconvinient', 'independent': 
+'independant independant',
 'initial': 'intial', 'initials': 'inetials inistals initails initals intials',
-'juice': 'guic juce jucie juise juse', 'latest': 'lates latets latiest latist', 
+'juice': 'guic juce jucie juise juse', 'latest': 
+'lates latets latiest latist', 
 'laugh': 'lagh lauf laught lugh', 'level': 'leval',
-'levels': 'levals', 'liaison': 'liaision liason', 'lieu': 'liew', 'literature':
+'levels': 'levals', 'liaison': 'liaision liason', 'lieu': 'liew', 
+'literature':
 'litriture', 'loans': 'lones', 'locally': 'localy', 'magnificent': 
-'magnificnet magificent magnifcent magnifecent magnifiscant magnifisent magnificant',
+'magnificnet magificent magnifcent magnifecent magnifiscant magnifisent ' +
+'magnificant',
 'management': 'managment', 'meant': 'ment', 'minuscule': 'miniscule',
 'minutes': 'muinets', 'monitoring': 'monitering', 'necessary': 
 'neccesary necesary neccesary necassary necassery neccasary', 'occurrence':
 'occurence occurence', 'often': 'ofen offen offten ofton', 'opposite': 
-'opisite oppasite oppesite oppisit oppisite opposit oppossite oppossitte', 'parallel': 
-'paralel paralell parrallel parralell parrallell', 'particular': 'particulaur',
+'opisite oppasite oppesite oppisit oppisite opposit oppossite oppossitte', 
+'parallel': 
+'paralel paralell parrallel parralell parrallell', 'particular': 
+'particulaur',
 'perhaps': 'perhapse', 'personnel': 'personnell', 'planned': 'planed', 'poem':
-'poame', 'poems': 'poims pomes', 'poetry': 'poartry poertry poetre poety powetry', 
+'poame', 'poems': 'poims pomes', 'poetry': 
+'poartry poertry poetre poety powetry', 
 'position': 'possition', 'possible': 'possable', 'pretend': 
-'pertend protend prtend pritend', 'problem': 'problam proble promblem proplen',
+'pertend protend prtend pritend', 'problem': 
+'problam proble promblem proplen',
 'pronunciation': 'pronounciation', 'purple': 'perple perpul poarple',
 'questionnaire': 'questionaire', 'really': 'realy relley relly', 'receipt':
 'receit receite reciet recipt', 'receive': 'recieve', 'refreshment':
-'reafreshment refreshmant refresment refressmunt', 'remember': 'rember remeber rememmer rermember',
+'reafreshment refreshmant refresment refressmunt', 'remember': 
+'rember remeber rememmer rermember',
 'remind': 'remine remined', 'scarcely': 'scarcly scarecly scarely scarsely', 
 'scissors': 'scisors sissors', 'separate': 'seperate',
 'singular': 'singulaur', 'someone': 'somone', 'sources': 'sorces', 'southern':
 'southen', 'special': 'speaical specail specal speical', 'splendid': 
-'spledid splended splened splended', 'standardizing': 'stanerdizing', 'stomach': 
-'stomac stomache stomec stumache', 'supersede': 'supercede superceed', 'there': 'ther',
+'spledid splended splened splended', 'standardizing': 'stanerdizing', 
+'stomach': 
+'stomac stomache stomec stumache', 'supersede': 'supercede superceed', 
+'there': 'ther',
 'totally': 'totaly', 'transferred': 'transfred', 'transportability':
-'transportibility', 'triangular': 'triangulaur', 'understand': 'undersand undistand', 
+'transportibility', 'triangular': 'triangulaur', 'understand': 
+'undersand undistand', 
 'unexpected': 'unexpcted unexpeted unexspected', 'unfortunately':
-'unfortunatly', 'unique': 'uneque', 'useful': 'usefull', 'valuable': 'valubale valuble', 
+'unfortunatly', 'unique': 'uneque', 'useful': 'usefull', 'valuable': 
+'valubale valuble', 
 'variable': 'varable', 'variant': 'vairiant', 'various': 'vairious',
 'visited': 'fisited viseted vistid vistied', 'visitors': 'vistors',
 'voluntary': 'volantry', 'voting': 'voteing', 'wanted': 'wantid wonted',
@@ -99,7 +117,8 @@ tests2 = {'forbidden': 'forbiden', 'decisions': 'deciscions descisions',
 'meen', 'weighted': 'wagted', 'adequately': 'adequattly', 'shown': 'hown',
 'matrix': 'matriiix', 'profit': 'proffit', 'encourage': 'encorage', 'collate':
 'colate', 'disaggregate': 'disaggreagte disaggreaget', 'receiving':
-'recieving reciving', 'proviso': 'provisoe', 'umbrella': 'umberalla', 'approached':
+'recieving reciving', 'proviso': 'provisoe', 'umbrella': 'umberalla', 
+'approached':
 'aproached', 'pleasant': 'plesent', 'difficulty': 'dificulty', 'appointments':
 'apointments', 'base': 'basse', 'conditioning': 'conditining', 'earliest':
 'earlyest', 'beginning': 'begining', 'universally': 'universaly',
@@ -112,7 +131,8 @@ tests2 = {'forbidden': 'forbiden', 'decisions': 'deciscions descisions',
 'luckeley', 'eliminated': 'elimiated', 'believe': 'belive', 'appreciated':
 'apreciated', 'readjusted': 'reajusted', 'were': 'wer where', 'feeling':
 'fealing', 'and': 'anf', 'false': 'faulse', 'seen': 'seeen', 'interrogating':
-'interogationg', 'academically': 'academicly', 'relatively': 'relativly relitivly',
+'interogationg', 'academically': 'academicly', 'relatively': 
+'relativly relitivly',
 'traditionally': 'traditionaly', 'studying': 'studing',
 'majority': 'majorty', 'build': 'biuld', 'aggravating': 'agravating',
 'transactions': 'trasactions', 'arguing': 'aurguing', 'sheets': 'sheertes',
@@ -137,7 +157,8 @@ tests2 = {'forbidden': 'forbiden', 'decisions': 'deciscions descisions',
 'suggested': 'sugested', 'career': 'carear', 'many': 'mony', 'annual':
 'anual', 'according': 'acording', 'receives': 'recives recieves',
 'interesting': 'intresting', 'expense': 'expence', 'relevant':
-'relavent relevaant', 'table': 'tasble', 'throughout': 'throuout', 'conference':
+'relavent relevaant', 'table': 'tasble', 'throughout': 'throuout', 
+'conference':
 'conferance', 'sensible': 'sensable', 'described': 'discribed describd',
 'union': 'unioun', 'interest': 'intrest', 'flexible': 'flexable', 'refered':
 'reffered', 'controlled': 'controled', 'sufficient': 'suficient',
@@ -154,7 +175,8 @@ tests2 = {'forbidden': 'forbiden', 'decisions': 'deciscions descisions',
 'compared': 'comppared compased', 'moving': 'moveing', 'necessity':
 'nessesity', 'opportunity': 'oppertunity oppotunity opperttunity', 'thoughts':
 'thorts', 'equalled': 'equaled', 'variety': 'variatry', 'analysis':
-'analiss analsis analisis', 'patterns': 'pattarns', 'qualities': 'quaties', 'easily':
+'analiss analsis analisis', 'patterns': 'pattarns', 'qualities': 'quaties', 
+'easily':
 'easyly', 'organization': 'oranisation oragnisation', 'the': 'thw hte thi',
 'corporate': 'corparate', 'composed': 'compossed', 'enormously': 'enomosly',
 'financially': 'financialy', 'functionally': 'functionaly', 'discipline':
@@ -200,7 +222,8 @@ def build_test1(test):
 		pair = line.split()
 		if len(pair) < 2 or len(pair[0]) < 6 or len(pair[1]) < 6:
 			continue
-		our_out = scramble_helpers.suggest(pair[1],char_model,similarity_model, error_model)
+		our_out = scramble_helpers.suggest(
+			pair[1],char_model,similarity_model, error_model)
 		norvig_out = norvig.correct(pair[1].lower())
 		if our_out[0].lower() == pair[0].lower():
 			our_correct += 1
@@ -220,7 +243,8 @@ def build_test2(tests):
 			n+=1
 			if len(word) < 6 or len(word) < 6:
 				continue
-			our_out = scramble_helpers.suggest(word,char_model,similarity_model, error_model)
+			our_out = scramble_helpers.suggest(
+				word,char_model,similarity_model, error_model)
 			norvig_out = norvig.correct(word.lower())
 			print our_out, target, word
 			if our_out[0].lower() == target:
