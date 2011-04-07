@@ -1,4 +1,4 @@
-import itertools, collections, error_model_helpers
+import itertools, collections, error_model_helpers, re
 
 # @brief Combinatorially generate all bigrams for string, return with yield
 # Combinatorially generates all possible bigrams for some word. So in the case
@@ -143,23 +143,34 @@ def probability_index(misspell,correction,char_model):
 # @param error_model Probability distribution for spelling errors
 #
 # @return A tuple of the suggestion, the original word, and the probability
-def suggest(word,char_model,similarity_model,word_model_tuple):
+def suggest(word,char_model,similarity_model,word_model_tuple, error_model):
 	# Make word lower case and find the possible corrections "like" it.
 	word = word.lower()
 	similar_words=closest_words(word,similarity_model)
 	current_best=("",1)  # Will hold our current-best word and its probability
 	                     # in form (word, probability)
 	# Cycle through possible corrections and find the "best" correction
-	for correction in similar_words:
+	"""for correction in similar_words:
+		correction = correction.lower()
 		probability=probability_index(word,correction,char_model)
 		if correction in word_model_tuple[0]:
 			probability *= 1-word_model_tuple[0][correction]/float(word_model_tuple[1])
 		else:
-			word_model_tuple[1] += 1
-			word_model_tuple[correction] = 1
-			probability *= 1-word_model_tuple[0][correction]/float(word_model_tuple[1])
+			word_model_tuple = (word_model_tuple[0], word_model_tuple[1]+1)
+			word_model_tuple[0][correction] = 1
+			probability *= 1-word_model_tuple[0][correction]/float(word_model_tuple[1])"""
 
-		print correction, probability
+		edits = error_model_helpers.minimum_edits(correction, word)
+		
+		total_error_prob = 1
+		for edit in edits:
+			if re.search("[^a-zA-Z]+", edit) != None or re.search("[^a-zA-Z]+", edit) != None:
+				continue
+			total_error_prob *= error_model[edit]
+		probability += total_error_prob
+
+		# DEBUGGING
+		#print correction, probability
 
 		if current_best[1] > probability:
 			current_best = (correction,probability)
