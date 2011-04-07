@@ -1,3 +1,5 @@
+import collections
+
 ALPH = "abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ"
 
 def file_to_list(textfile):
@@ -14,8 +16,12 @@ def build_counter(words):
 		if not number in dictionary:
 			dictionary[number]=1
 		else:
-			 dictionary[number]+= 1
+			dictionary[number]+= 1
 	return dictionary
+
+def word_model(words):
+	model = build_counter(words)
+	return (model, sum(model.values()))
 
 def check_word(word, dictionary):
 	# checks if a word is in a previously made dictionary
@@ -128,4 +134,4 @@ def suggest(word):
 
 #print check_char_sub("grandsonn", histogram)
 #partitions = word_part("button")
-print suggest("rcaeacr")
+#print suggest("rcaeacr")
