@@ -28,13 +28,12 @@ def minimum_edits(s, t):
 
 	# Set up the trivially knowable values for both the summary and the
 	# Levenshtein array.
-	for i in range(0,m):
+	for i in range(1,m):
 		d[i][0] = i
-		summary[i][0] = ["I"]*i
-	for j in range(0,n):
+		summary[i][0] = summary[i-1][0]+["I"+s[i-1]]
+	for j in range(1,n):
 		d[0][j] = j
-		summary[0][j] = ["I"]*j
-
+		summary[0][j] = summary[0][j-1]+["I"+t[j-1]]
 	# "Flood" the array; the cell at d[m-1][n-1] should at the end be the
 	# minimum edit distance. The summary of any cell in d is in the
 	# corresponding location in summary, so at the end of this,
@@ -55,13 +54,13 @@ def minimum_edits(s, t):
 				# ... and then generate the summary for that distance
 				# deletion
 				if d[i-1][j]+1 <= d[i][j-1]+1 and d[i-1][j]+1 <= d[i-1][j-1]+1:
-					summary[i][j] = summary[i-1][j] + ["D"]
+					summary[i][j] = summary[i-1][j] + ["D"+s[i-1]]
 				# insertion
 				elif d[i][j-1]+1 <= d[i-1][j]+1 and d[i][j-1]+1 <= d[i-1][j-1]+1:
-					summary[i][j] = summary[i][j-1] + ["I"]
+					summary[i][j] = summary[i][j-1] + ["I"+t[j-1]]
 				# substitution
 				elif d[i-1][j-1]+1 <= d[i-1][j]+1 and d[i-1][j-1]+1 <= d[i][j-1]+1:
-					summary[i][j] = summary[i-1][j-1] + ["R"]
+					summary[i][j] = summary[i-1][j-1] + ["R"+s[i-1]+t[j-1]]
 	return summary[m-1][n-1]
 
 # @brief Find misspellings trains the error model on them
@@ -137,3 +136,5 @@ def error_model():
 	for error in model.keys(): model[error] = model[error]/float(total)
 
 	return model
+
+print minimum_edits("cow", "cod")
