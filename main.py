@@ -1,4 +1,4 @@
-import scramble_helpers, norvig
+import scramble_helpers, norvig, spell
 
 tests1 = { 'access': 'acess', 'accessing': 'accesing', 'accommodation':
 'accomodation acommodation acomodation', 'account': 'acount', 'address':
@@ -223,7 +223,7 @@ def build_test1(test):
 		if len(pair) < 2 or len(pair[0]) < 6 or len(pair[1]) < 6:
 			continue
 		our_out = scramble_helpers.suggest(
-			pair[1],char_model,similarity_model, error_model)
+			pair[1],char_model,similarity_model,word_model_tuple)
 		norvig_out = norvig.correct(pair[1].lower())
 		if our_out[0].lower() == pair[0].lower():
 			our_correct += 1
@@ -244,7 +244,7 @@ def build_test2(tests):
 			if len(word) < 6 or len(word) < 6:
 				continue
 			our_out = scramble_helpers.suggest(
-				word,char_model,similarity_model, error_model)
+				word,char_model,similarity_model, word_model_tuple)
 			norvig_out = norvig.correct(word.lower())
 			print our_out, target, word
 			if our_out[0].lower() == target:
@@ -260,11 +260,17 @@ print "BUILDING SIMILARITY MODEL"
 similarity_model = scramble_helpers.similarity_model("corpus")
 print "BUILDING CHARACTER MODEL"
 char_model = scramble_helpers.char_model("corpus")
-print "BUILDING ERROR MODEL"
-error_model = scramble_helpers.error_model_helpers.error_model()
+#print "BUILDING ERROR MODEL"
+#error_model = scramble_helpers.error_model_helpers.error_model()
+print "BUILDING WORD MODEL"
+word_model_tuple = spell.word_model(spell.file_to_list(open("corpus",'r')))
+word_model = word_model_tuple[0]
 
 print "### EXPERIMENT 1: FIRST NORVIG TEST"
 build_test2(tests1)
+
+sys.exit()
+
 print "### EXPERIMENT 2: THE \"EASY\" BIRKBECK MISSPELLINGS"
 build_test1("test_errors_easy")
 print "### EXPERIMENT 3: THE \"HARD\" BIRKBECK MISSPELLINGS"
