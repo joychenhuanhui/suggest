@@ -60,7 +60,8 @@ def minimum_edits(s, t):
 					summary[i][j] = summary[i][j-1] + ["I"+t[j-1]]
 				# substitution
 				elif d[i-1][j-1]+1 <= d[i-1][j]+1 and d[i-1][j-1]+1 <= d[i][j-1]+1:
-					summary[i][j] = summary[i-1][j-1] + ["R"+s[i-1]+t[j-1]]
+					#summary[i][j] = summary[i-1][j-1] + ["R"+s[i-1]+t[j-1]]
+					summary[i][j] = summary[i-1][j-1] + ["R"+s[i-1]]
 	return summary[m-1][n-1]
 
 # @brief Find misspellings trains the error model on them
@@ -137,4 +138,5 @@ def error_model():
 
 	return model
 
-print minimum_edits("cow", "cod")
+#print minimum_edits("cow", "cod")
+error_model = error_model()
