@@ -167,7 +167,7 @@ def suggest(word,char_model,similarity_model,word_model_tuple, error_model):
 			if re.search("[^a-zA-Z]+", edit) != None or re.search("[^a-zA-Z]+", edit) != None:
 				continue
 			total_error_prob *= error_model[edit]
-		probability += total_error_prob
+		probability -= total_error_prob
 
 		# DEBUGGING
 		#print correction, probability
