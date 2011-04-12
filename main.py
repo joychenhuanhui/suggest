@@ -246,7 +246,8 @@ def build_test2(tests):
 			our_out = scramble_helpers.suggest(
 				word,char_model,similarity_model, word_model_tuple, error_model)
 			norvig_out = norvig.correct(word.lower())
-			print our_out, target, word
+			# DEBUGGING
+			#print our_out, target, word
 			if our_out[0].lower() == target:
 				our_correct += 1
 			if norvig_out == target:
@@ -269,7 +270,10 @@ word_model = word_model_tuple[0]
 print "### EXPERIMENT 1: FIRST NORVIG TEST"
 build_test2(tests1)
 
-print "### EXPERIMENT 2: THE \"EASY\" BIRKBECK MISSPELLINGS"
+print "### EXPERIMENT 2: FIRST NORVIG TEST"
+build_test2(tests2)
+
+print "### EXPERIMENT 3: THE \"EASY\" BIRKBECK MISSPELLINGS"
 build_test1("test_errors_easy")
-print "### EXPERIMENT 3: THE \"HARD\" BIRKBECK MISSPELLINGS"
+print "### EXPERIMENT 4: THE \"HARD\" BIRKBECK MISSPELLINGS"
 build_test1("test_errors_veryhard")
